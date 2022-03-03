@@ -17,7 +17,7 @@ namespace Heist
 
             Console.WriteLine("Plan Your Heist!");
 
-            while (prompting)
+            do
             {
                 Member member = new Member();
 
@@ -52,6 +52,7 @@ namespace Heist
 
                 Console.WriteLine($"The total number of members on the team is {team.MembersCount}.");
             }
+            while (true);
 
             int teamSkillLevel = team.TotalSkillLevel();
             int heistLuckValue = new Random().Next(-10, 11);
