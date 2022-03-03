@@ -9,6 +9,9 @@ namespace Heist
             // create a new team to add members to later
             Team team = new Team();
 
+            // bank difficulty level in int
+            int bankDifficultyLevel = 100;
+
             // flag for when to end the prompts
             bool prompting = true;
 
@@ -47,12 +50,23 @@ namespace Heist
 
                 team.AddMember(member);
 
-                Console.WriteLine(member.MemberDescription());
-
                 Console.WriteLine($"The total number of members on the team is {team.MembersCount}.");
             }
 
+            int teamSkillLevel = team.TotalSkillLevel();
+            int heistLuckValue = new Random().Next(-10, 11);
+            bankDifficultyLevel += heistLuckValue;
 
+            Console.WriteLine(@$"Team's combined skill level: {teamSkillLevel}
+Bank's difficulty level: {bankDifficultyLevel}");
+            if (teamSkillLevel >= bankDifficultyLevel)
+            {
+                Console.WriteLine("Y'all've successfully pulled off a heist!");
+            }
+            else
+            {
+                Console.WriteLine("Pfft, y'all suck. Off to prison you go!");
+            }
         }
     }
 }

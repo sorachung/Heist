@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Heist
 {
@@ -28,6 +29,12 @@ namespace Heist
             {
                 Console.WriteLine(member.MemberDescription());
             }
+        }
+
+        public int TotalSkillLevel()
+        {
+            // creates new List<int> 
+            return Members.ConvertAll<int>(member => member.SkillLevel).Sum();
         }
     }
 
