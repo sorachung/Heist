@@ -48,9 +48,11 @@ namespace Heist
                 team.AddMember(member);
 
                 Console.WriteLine(member.MemberDescription());
+
+                Console.WriteLine($"The total number of members on the team is {team.MembersCount}.");
             }
 
-            Console.WriteLine($"The total number of members on the team is {team.MembersCount}.");
+
         }
     }
 }
