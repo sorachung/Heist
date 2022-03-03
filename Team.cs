@@ -33,7 +33,7 @@ namespace Heist
 
         public int TotalSkillLevel()
         {
-            // creates new List<int> 
+            // creates new List<int> of skill levels then sums them up
             return Members.ConvertAll<int>(member => member.SkillLevel).Sum();
         }
     }
