@@ -12,9 +12,6 @@ namespace Heist
             // bank difficulty level in int
             int bankDifficultyLevel = 100;
 
-            // flag for when to end the prompts
-            bool prompting = true;
-
             Console.WriteLine("Plan Your Heist!");
 
             do
@@ -54,19 +51,28 @@ namespace Heist
             }
             while (true);
 
+            // 
             int teamSkillLevel = team.TotalSkillLevel();
-            int heistLuckValue = new Random().Next(-10, 11);
-            bankDifficultyLevel += heistLuckValue;
 
-            Console.WriteLine(@$"Team's combined skill level: {teamSkillLevel}
+            Console.Write("How many trial runs would you like to run? ");
+            int numOfTrials = int.Parse(Console.ReadLine());
+
+            for (int i = 1; i <= numOfTrials; i++)
+            {
+                Console.WriteLine($"Trial #{i}:");
+                int heistLuckValue = new Random().Next(-10, 11);
+                bankDifficultyLevel += heistLuckValue;
+
+                Console.WriteLine(@$"Team's combined skill level: {teamSkillLevel}
 Bank's difficulty level: {bankDifficultyLevel}");
-            if (teamSkillLevel >= bankDifficultyLevel)
-            {
-                Console.WriteLine("Y'all've successfully pulled off a heist!");
-            }
-            else
-            {
-                Console.WriteLine("Pfft, y'all suck. Off to prison you go!");
+                if (teamSkillLevel >= bankDifficultyLevel)
+                {
+                    Console.WriteLine("Y'all've successfully pulled off a heist!");
+                }
+                else
+                {
+                    Console.WriteLine("Pfft, y'all suck. Off to prison you go!");
+                }
             }
         }
     }
