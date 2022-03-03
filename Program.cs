@@ -60,14 +60,15 @@ namespace Heist
             int successfulRuns = numOfTrials;
             for (int i = 1; i <= numOfTrials; i++)
             {
+
                 Console.WriteLine($"Trial #{i}:");
                 int heistLuckValue = new Random().Next(-10, 11);
-                bankDifficultyLevel += heistLuckValue;
+                int adjustedBankDifficultyLevel = bankDifficultyLevel + heistLuckValue;
 
                 Console.WriteLine($"Team's combined skill level: {teamSkillLevel}");
-                Console.WriteLine($"Bank's difficulty level: {bankDifficultyLevel}");
+                Console.WriteLine($"Bank's difficulty level: {adjustedBankDifficultyLevel}");
 
-                if (teamSkillLevel >= bankDifficultyLevel)
+                if (teamSkillLevel >= adjustedBankDifficultyLevel)
                 {
                     Console.WriteLine("Y'all've successfully pulled off a heist!");
                 }
