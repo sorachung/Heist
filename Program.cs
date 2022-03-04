@@ -19,6 +19,7 @@ namespace Heist
             {
                 Member member = new Member();
 
+                // ask for team member's name
                 Console.Write("What is your team member's name? ");
                 string name = Console.ReadLine();
                 if (String.IsNullOrWhiteSpace(name))
@@ -27,24 +28,52 @@ namespace Heist
                 }
                 member.Name = name;
 
-                Console.Write("What is your team member's skill level? ");
-                string skillLevelStr = Console.ReadLine();
-                try
+                // ask for team member's skill level
+                int skillLevelInt = 0;
+                do
                 {
-                    int skillLevelInt = int.Parse(skillLevelStr);
-                    if (skillLevelInt <= 0)
+                    try
                     {
-                        throw new FormatException("Please enter a positive integer!");
+                        Console.Write("What is your team member's skill level? ");
+                        string skillLevelStr = Console.ReadLine();
+                        skillLevelInt = int.Parse(skillLevelStr);
+                        if (skillLevelInt <= 0)
+                        {
+                            throw new FormatException("Please enter a positive integer!");
+                        }
                     }
-                    member.SkillLevel = skillLevelInt;
+                    catch (FormatException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
                 }
-                catch (FormatException ex)
-                {
-                    Console.WriteLine("Please enter a positive integer!");
-                }
+                while (skillLevelInt <= 0);
 
-                Console.Write("What is your team member's courage factor? ");
-                member.CourageFactor = double.Parse(Console.ReadLine());
+                member.SkillLevel = skillLevelInt;
+
+                // ask for team member's courage factor
+                double courageFactorDouble = -1;
+                do
+                {
+                    try
+                    {
+                        Console.Write("What is your team member's courage factor? ");
+                        string courageFactorStr = Console.ReadLine();
+                        courageFactorDouble = double.Parse(courageFactorStr);
+                        if (courageFactorDouble < 0 || courageFactorDouble > 2)
+                        {
+                            throw new FormatException("Please enter a decimal between 0.0 and 2.0!");
+                        }
+                    }
+                    catch (FormatException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+
+                }
+                while (courageFactorDouble < 0 || courageFactorDouble > 2);
+
+                member.CourageFactor = courageFactorDouble;
 
                 team.AddMember(member);
 
