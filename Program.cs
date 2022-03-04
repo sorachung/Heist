@@ -40,6 +40,7 @@ namespace Heist
                 Member member = new Member();
 
                 // ask for team member's name
+                Console.WriteLine();
                 Console.Write("What is your team member's name? ");
                 string name = Console.ReadLine();
                 if (String.IsNullOrWhiteSpace(name))
@@ -54,6 +55,7 @@ namespace Heist
                 {
                     try
                     {
+                        Console.WriteLine();
                         Console.Write("What is your team member's skill level? ");
                         string skillLevelStr = Console.ReadLine();
                         skillLevelInt = int.Parse(skillLevelStr);
@@ -77,6 +79,7 @@ namespace Heist
                 {
                     try
                     {
+                        Console.WriteLine();
                         Console.Write("What is your team member's courage factor? ");
                         string courageFactorStr = Console.ReadLine();
                         courageFactorDouble = double.Parse(courageFactorStr);
@@ -97,6 +100,7 @@ namespace Heist
 
                 team.AddMember(member);
 
+                Console.WriteLine();
                 Console.WriteLine($"The total number of members on the team is {team.MembersCount}.");
             }
             while (true);
@@ -110,6 +114,7 @@ namespace Heist
             {
                 try
                 {
+                    Console.WriteLine();
                     Console.Write("How many trial runs would you like to run? ");
                     string numOfTrialsStr = Console.ReadLine();
                     numOfTrials = int.Parse(numOfTrialsStr);
@@ -130,6 +135,7 @@ namespace Heist
             for (int i = 1; i <= numOfTrials; i++)
             {
 
+                Console.WriteLine();
                 Console.WriteLine($"Trial #{i}:");
                 int heistLuckValue = new Random().Next(-10, 11);
                 int adjustedBankDifficultyLevel = bankDifficultyLevel + heistLuckValue;
@@ -148,6 +154,8 @@ namespace Heist
                 }
             }
 
+            // final report for successful and failed runs
+            Console.WriteLine();
             Console.WriteLine($"Successful runs: {successfulRuns}");
             Console.WriteLine($"Failed runs: {numOfTrials - successfulRuns}");
         }
