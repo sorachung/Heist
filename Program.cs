@@ -9,12 +9,32 @@ namespace Heist
             // create a new team to add members to later
             Team team = new Team();
 
-            // prompt user for bank difficulty level in int
-            Console.Write("Please enter a difficulty level of the bank: ");
-            int bankDifficultyLevel = int.Parse(Console.ReadLine());
-
+            // opening message
             Console.WriteLine("Plan Your Heist!");
 
+            // prompt user for bank difficulty level in int
+            int bankDifficultyLevel = 0;
+            do
+            {
+                try
+                {
+                    Console.Write("Please enter a difficulty level of the bank: ");
+                    string bankDifficultyLevelStr = Console.ReadLine();
+                    bankDifficultyLevel = int.Parse(bankDifficultyLevelStr);
+
+                    if (bankDifficultyLevel <= 0)
+                    {
+                        throw new FormatException("Please enter a positive integer!");
+                    }
+                }
+                catch (FormatException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            while (bankDifficultyLevel <= 0);
+
+            // prompt user for team members' info
             do
             {
                 Member member = new Member();
@@ -81,11 +101,31 @@ namespace Heist
             }
             while (true);
 
-            // 
+            // total up team's skill level
             int teamSkillLevel = team.TotalSkillLevel();
 
-            Console.Write("How many trial runs would you like to run? ");
-            int numOfTrials = int.Parse(Console.ReadLine());
+            // prompt user for number of trials
+            int numOfTrials = 0;
+            do
+            {
+                try
+                {
+                    Console.Write("How many trial runs would you like to run? ");
+                    string numOfTrialsStr = Console.ReadLine();
+                    numOfTrials = int.Parse(numOfTrialsStr);
+                    if (numOfTrials <= 0)
+                    {
+                        throw new FormatException("Please enter a positive integer!");
+                    }
+                }
+                catch (FormatException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            while (numOfTrials <= 0);
+
+            // run trials and keep track of number of successful runs vs failed runs
             int successfulRuns = numOfTrials;
             for (int i = 1; i <= numOfTrials; i++)
             {
